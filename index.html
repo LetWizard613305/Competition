@@ -1,0 +1,1802 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Technovate | Innovation &amp; Technology</title>
+
+        <!-- Display serif in the spirit of Nathatype Resting. Resting is a paid font, so Fraunces is the free match. -->
+        <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,650;0,9..144,700;1,9..144,560&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,560;1,8..60,400&display=swap" rel="stylesheet">
+
+        <style>
+            /* ==================== 1. COLOURS (change the whole theme here) ==================== */
+
+            :root {
+                --bg: #060b1f;
+                --panel: rgba(10, 20, 50, 0.42);
+                --line: rgba(34, 211, 238, 0.35);
+                --text: #e8edff;
+                --muted: #a9b8dc;
+                --cyan: #22d3ee;
+                --violet: #8b5cf6;
+                --pink: #f472b6;
+
+                /* fonts: change them here to restyle all the text */
+                --font-display: "Fraunces", "Iowan Old Style", Palatino, Georgia, serif;
+                --font-body: "Source Serif 4", Georgia, "Times New Roman", serif;
+            }
+
+
+            /* ==================== 2. BASIC SETTINGS ==================== */
+
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            html {
+                scroll-behavior: smooth;
+                scroll-padding-top: 70px;
+            }
+
+            body {
+                font-family: var(--font-body);
+                color: var(--text);
+                line-height: 1.6;
+                background-color: var(--bg);
+            }
+
+            /* Landscape photo behind the whole site. Cover and Emerging Technologies keep their own backgrounds. */
+            body::before {
+                content: "";
+                position: fixed;
+                inset: 0;
+                z-index: -1;
+                background:
+                    linear-gradient(rgba(6, 11, 31, 0.38), rgba(6, 11, 31, 0.38)),
+                    url("site-bg.jpg") center / cover no-repeat;
+            }
+
+            body::after {
+                content: "";
+                position: fixed;
+                inset: 0;
+                z-index: -1;
+                pointer-events: none;
+                background: linear-gradient(rgba(6, 11, 31, 0.12), rgba(6, 11, 31, 0.18));
+            }
+
+            a {
+                color: var(--cyan);
+                text-decoration: none;
+            }
+
+
+            /* ==================== 3. NAVIGATION BAR ==================== */
+
+            nav {
+                position: sticky;
+                top: 0;
+                z-index: 20;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 8px;
+                padding: 12px 6%;
+                background: rgba(6, 11, 31, 0.85);
+                backdrop-filter: blur(10px);
+                border-bottom: 1px solid var(--line);
+            }
+
+            .brand {
+                font-size: 1.15rem;
+                background: linear-gradient(90deg, var(--cyan), var(--pink));
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+            }
+
+            .menu a {
+                position: relative;
+                margin-left: 18px;
+                font-size: 0.9rem;
+                color: #cbd5ff;
+                transition: color 0.3s;
+            }
+
+            .menu a:hover {
+                color: var(--cyan);
+            }
+
+            .menu a::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: -5px;
+                width: 100%;
+                height: 2px;
+                background: var(--cyan);
+                transform: scaleX(0);
+                transform-origin: left;
+                transition: transform 0.3s ease;
+            }
+
+            .menu a:hover::after {
+                transform: scaleX(1);
+            }
+
+
+            /* ==================== DISPLAY SERIF ==================== */
+
+            h1, h2, h3, .brand, .menu a, .btn, .tile figcaption {
+                font-family: var(--font-display);
+                font-optical-sizing: auto;
+                letter-spacing: -0.02em;
+                font-weight: 650;
+            }
+
+            .menu a, .btn {
+                text-transform: none;
+                letter-spacing: 0;
+                font-size: 1.02rem;
+            }
+
+            .brand {
+                font-weight: 700;
+                letter-spacing: -0.03em;
+                font-size: 1.45rem;
+            }
+
+            .card h3 {
+                font-size: 1.2rem;
+            }
+
+            .hero p {
+                font-size: 1.15rem;
+            }
+
+
+            /* ==================== 4. FRONT PAGE (hero) ==================== */
+
+            .hero {
+                position: relative;
+                min-height: calc(100vh - 56px);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                padding: 60px 6% 80px;
+                color: #fff;
+                border-bottom: 1px solid var(--line);
+
+                /* plain dark background with a soft glow at the top (the videos are the star here) */
+                background:
+                    linear-gradient(rgba(34, 211, 238, 0.04) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(34, 211, 238, 0.04) 1px, transparent 1px),
+                    radial-gradient(circle at 50% 0%, rgba(20, 56, 107, 0.6) 0, transparent 60%),
+                    var(--bg);
+                background-size: 48px 48px, 48px 48px, 100% 100%, auto;
+            }
+
+            /* keeps the front page content above the background */
+            .hero > * {
+                position: relative;
+                z-index: 1;
+            }
+
+            .hero h1 {
+                font-size: clamp(1.9rem, 5vw, 3.7rem);
+                font-weight: 700;
+                line-height: 1.15;
+                animation: fadeUp 1s ease both;
+            }
+
+            /* the word "Technology" has shimmering colours */
+            .hero h1 span {
+                background: linear-gradient(90deg, #22d3ee, #a78bfa, #f472b6, #22d3ee);
+                background-size: 200% auto;
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+                animation: shimmer 4s linear infinite;
+            }
+
+            .hero p {
+                max-width: 620px;
+                margin: 16px 0 30px;
+                color: #dbe4ff;
+                animation: fadeUp 1s 0.25s ease both;
+            }
+
+            .btn {
+                display: inline-block;
+                padding: 13px 32px;
+                border-radius: 30px;
+                background: linear-gradient(90deg, #06b6d4, #7c3aed);
+                color: #fff;
+                font-weight: 600;
+                animation: fadeUp 1s 0.5s ease both, glowPulse 2.4s 1.6s infinite;
+                box-shadow: 0 0 20px rgba(34, 211, 238, 0.2);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .btn:hover {
+                transform: translateY(-3px) scale(1.04);
+                box-shadow: 0 8px 30px rgba(34, 211, 238, 0.4);
+            }
+
+            /* the small arrow inside the button bounces */
+            .btn .arrow {
+                display: inline-block;
+                animation: bounce 1.4s ease-in-out infinite;
+            }
+
+
+            /* ==================== 4B. VIDEO COLLAGE (front page) ==================== */
+
+            .collage {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: min(1000px, 94%);
+                margin-top: 52px;
+            }
+
+            /* each video sits in a rounded, glowing, slightly tilted frame */
+            .tile {
+                position: relative;
+                margin: 0;
+                overflow: hidden;
+                border-radius: 18px;
+                border: 2px solid rgba(34, 211, 238, 0.6);
+                background: #0b1230;
+                box-shadow: 0 22px 50px rgba(0, 0, 0, 0.55), 0 0 32px rgba(34, 211, 238, 0.3);
+                transition: transform 0.5s ease, box-shadow 0.5s ease;
+            }
+
+            .tile video {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            /* left video: wide frame, tilted to the left */
+            .tile-a {
+                width: 56%;
+                aspect-ratio: 16 / 9;
+                transform: rotate(-3deg) translateY(16px);
+                z-index: 1;
+            }
+
+            /* right video: taller frame, tilted to the right, overlapping the left one a little */
+            .tile-b {
+                width: 48%;
+                aspect-ratio: 4 / 3;
+                margin-left: -6%;
+                transform: rotate(3deg) translateY(-16px);
+                z-index: 2;
+            }
+
+            /* on hover the frame straightens up and comes to the front */
+            .tile:hover {
+                transform: rotate(0deg) scale(1.04);
+                z-index: 3;
+                box-shadow: 0 26px 60px rgba(0, 0, 0, 0.6), 0 0 44px rgba(34, 211, 238, 0.55);
+            }
+
+            /* small name tag on each video */
+            .tile figcaption {
+                position: absolute;
+                left: 14px;
+                bottom: 12px;
+                padding: 4px 14px;
+                border-radius: 20px;
+                border: 1px solid rgba(34, 211, 238, 0.5);
+                background: rgba(6, 11, 31, 0.65);
+                backdrop-filter: blur(6px);
+                font-size: 0.85rem;
+                font-weight: 600;
+                color: #fff;
+            }
+
+            /* help message, shown only when a video cannot be loaded */
+            .tile.video-missing::after {
+                content: "Can't load " attr(data-file) ". Keep it in the same folder as this page and open the page in Chrome or Edge.";
+                position: absolute;
+                inset: 0;
+                display: grid;
+                place-items: center;
+                padding: 20px;
+                text-align: center;
+                font-size: 0.9rem;
+                color: #fff;
+                background: rgba(6, 11, 31, 0.9);
+            }
+
+            /* smaller screens: less tilt and tighter spacing */
+            @media (max-width: 600px) {
+                .collage {
+                    margin-top: 36px;
+                }
+
+                .tile {
+                    border-radius: 12px;
+                }
+
+                .tile-a {
+                    transform: rotate(-2deg) translateY(8px);
+                }
+
+                .tile-b {
+                    transform: rotate(2deg) translateY(-8px);
+                }
+
+                .tile figcaption {
+                    left: 8px;
+                    bottom: 8px;
+                    padding: 2px 10px;
+                    font-size: 0.7rem;
+                }
+            }
+
+
+            /* ==================== 5. ANIMATIONS ==================== */
+
+            /* slide up and appear */
+            @keyframes fadeUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(28px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            /* background colours drift */
+            @keyframes gradientShift {
+                0%, 100% {
+                    background-position: 0% 50%;
+                }
+                50% {
+                    background-position: 100% 50%;
+                }
+            }
+
+            /* colour shine moves across the text */
+            @keyframes shimmer {
+                to {
+                    background-position: 200% center;
+                }
+            }
+
+            /* soft glowing ring around the button */
+            @keyframes glowPulse {
+                0%, 100% {
+                    box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.55);
+                }
+                50% {
+                    box-shadow: 0 0 0 14px rgba(34, 211, 238, 0);
+                }
+            }
+
+            /* small up-and-down movement */
+            @keyframes bounce {
+                0%, 100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(5px);
+                }
+            }
+
+            /* people who prefer less motion see no animation */
+            @media (prefers-reduced-motion: reduce) {
+                *, *::before, *::after {
+                    animation: none !important;
+                    transition: none !important;
+                }
+            }
+
+
+            /* ==================== 6. SECTIONS, HEADINGS AND CARDS ==================== */
+
+            section {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 70px 6%;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+                text-align: center;
+                color: #fff;
+            }
+
+            /* small glowing bar under every heading */
+            h2::after {
+                content: "";
+                display: block;
+                width: 70px;
+                height: 4px;
+                margin: 10px auto 0;
+                border-radius: 4px;
+                background: linear-gradient(90deg, var(--cyan), var(--violet));
+            }
+
+            .sub {
+                text-align: center;
+                color: var(--muted);
+                margin: 14px 0 38px;
+            }
+
+            /* cards sit in a grid that wraps on small screens */
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                gap: 22px;
+            }
+
+            .card {
+                background: var(--panel);
+                border: 1px solid var(--line);
+                border-radius: 18px;
+                overflow: hidden;
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                box-shadow: 0 0 24px rgba(34, 211, 238, 0.12);
+                transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+            }
+
+            .card:hover {
+                transform: translateY(-8px) scale(1.02);
+                border-color: var(--cyan);
+                box-shadow: 0 12px 35px rgba(34, 211, 238, 0.25);
+            }
+
+            .card .body {
+                padding: 18px;
+            }
+
+            .card h3 {
+                margin-bottom: 6px;
+                color: #fff;
+            }
+
+            .card p {
+                color: var(--muted);
+                font-size: 1rem;
+            }
+
+            /* coloured picture panel at the top of a card */
+            .pic {
+                height: 130px;
+                display: grid;
+                place-items: center;
+                font-size: 3.5rem;
+            }
+
+            .g1 { background: linear-gradient(135deg, #6366f1, #22d3ee); }
+            .g2 { background: linear-gradient(135deg, #f59e0b, #ef4444); }
+            .g3 { background: linear-gradient(135deg, #10b981, #06b6d4); }
+            .g4 { background: linear-gradient(135deg, #8b5cf6, #ec4899); }
+            .g5 { background: linear-gradient(135deg, #0ea5e9, #6366f1); }
+            .g6 { background: linear-gradient(135deg, #14b8a6, #84cc16); }
+
+            /* "Read on Wikipedia" links on the cards */
+            .more {
+                display: inline-block;
+                margin: 12px 14px 0 0;
+                font-size: 0.9rem;
+                font-weight: 600;
+                white-space: nowrap;
+            }
+
+            .more:hover {
+                text-decoration: underline;
+            }
+
+
+            /* ==================== 7. EVOLUTION TIMELINE ==================== */
+
+            .band {
+                background: rgba(10, 18, 48, 0.22);
+                border-top: 1px solid var(--line);
+                border-bottom: 1px solid var(--line);
+            }
+
+            .timeline {
+                max-width: 720px;
+                margin: 0 auto;
+                border-left: 3px solid var(--line);
+            }
+
+            .timeline-item {
+                position: relative;
+                padding: 0 0 26px 28px;
+            }
+
+            /* glowing dot on the timeline */
+            .timeline-item::before {
+                content: "";
+                position: absolute;
+                left: -12px;
+                top: 6px;
+                width: 18px;
+                height: 18px;
+                border-radius: 50%;
+                background: var(--violet);
+                border: 3px solid var(--bg);
+                box-shadow: 0 0 12px var(--violet);
+            }
+
+            .timeline-item h3 {
+                color: var(--cyan);
+                font-size: 0.95rem;
+            }
+
+            .timeline-item p {
+                color: var(--muted);
+            }
+
+
+            /* ==================== 8. EMERGING TECHNOLOGIES (interactive field) ==================== */
+
+            .robotic {
+                position: relative;
+                overflow: hidden;
+                background: #070818;
+                cursor: crosshair;
+            }
+
+            .robotic section {
+                position: relative;
+                z-index: 1;
+            }
+
+            #emerging .grid {
+                grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            }
+
+            .field {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                display: block;
+                z-index: 0;
+            }
+
+            .field-hint {
+                position: relative;
+                z-index: 1;
+                margin: -18px 0 28px;
+                text-align: center;
+                font-size: 0.85rem;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                color: rgba(186, 230, 253, 0.75);
+            }
+
+            /* night island photo, only behind Impact */
+            .impact-sky {
+                background:
+                    linear-gradient(rgba(8, 10, 28, 0.38), rgba(8, 10, 28, 0.48)),
+                    url("impact-bg.jpg") center / cover no-repeat;
+                background-attachment: fixed;
+            }
+
+
+            /* ==================== 9. FOOTER ==================== */
+
+            footer {
+                text-align: center;
+                color: #cbd5ff;
+                font-weight: 600;
+
+                /* The first 110px at the top are a blending zone (there is no dividing line any more). */
+                padding: 110px 6% 40px;
+
+                /* The background starts see-through, so the moving gradient of the Impact section
+                   carries on, then slowly fades to the dark navy of the GIF (#0b1230), then gets a bit darker. */
+                background: linear-gradient(
+                    180deg,
+                    transparent 0,
+                    rgba(11, 18, 48, 0.28) 70px,
+                    rgba(4, 8, 24, 0.55) 100%
+                );
+            }
+
+            .end-gif {
+                display: block;
+                width: 100%;
+                max-width: 720px;
+                height: auto;
+                margin: 0 auto 10px;
+
+                /* The edges of the GIF fade out softly, so it melts into the background instead of ending with a sharp edge. */
+                -webkit-mask-image:
+                    linear-gradient(to bottom, transparent 0, #000 16%, #000 84%, transparent 100%),
+                    linear-gradient(to right, transparent 0, #000 10%, #000 90%, transparent 100%);
+                -webkit-mask-composite: source-in;
+                mask-image:
+                    linear-gradient(to bottom, transparent 0, #000 16%, #000 84%, transparent 100%),
+                    linear-gradient(to right, transparent 0, #000 10%, #000 90%, transparent 100%);
+                mask-composite: intersect;
+            }
+
+            .contact {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 12px 36px;
+                margin-top: 26px;
+                padding-top: 22px;
+                border-top: 1px solid rgba(203, 213, 255, 0.25);
+                font-size: 1.05rem;
+            }
+
+            .contact a {
+                color: #7dd3fc;
+            }
+
+            .contact a:hover {
+                color: #fff;
+            }
+
+            @media (max-width: 600px) {
+                nav {
+                    justify-content: center;
+                }
+
+                .menu {
+                    display: flex;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    gap: 12px;
+                }
+
+                .menu a {
+                    margin-left: 0;
+                    font-size: 0.85rem;
+                }
+
+                section {
+                    padding: 48px 5%;
+                }
+
+                h2 {
+                    font-size: 1.7rem;
+                }
+
+                .hero {
+                    padding: 60px 5%;
+                }
+            }
+
+
+            /* ==================== QUIZ BUTTON AND POPUP ==================== */
+
+            /* the Quiz button reuses the .btn look and adds a pointer cursor */
+            .quiz-btn {
+                margin-top: 28px;
+                border: none;
+                cursor: pointer;
+                animation: glowPulse 2.4s infinite;
+            }
+
+            /* the popup box (a native <dialog>), centred on the screen */
+            .quiz-popup {
+                width: min(440px, 90%);
+                margin: auto;
+                padding: 34px 28px 30px;
+                border: 1px solid var(--cyan);
+                border-radius: 20px;
+                background: rgba(8, 18, 44, 0.97);
+                color: var(--text);
+                text-align: center;
+                box-shadow: 0 0 50px rgba(34, 211, 238, 0.35);
+            }
+
+            .quiz-popup[open] {
+                animation: popIn 0.35s ease;
+            }
+
+            /* dark blurred layer behind the popup */
+            .quiz-popup::backdrop {
+                background: rgba(3, 6, 20, 0.78);
+                backdrop-filter: blur(4px);
+            }
+
+            .quiz-popup h3 {
+                font-size: 1.5rem;
+                color: #fff;
+                margin-bottom: 10px;
+            }
+
+            .quiz-popup p {
+                color: var(--muted);
+            }
+
+            .quiz-actions {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 12px;
+                margin-top: 24px;
+            }
+
+            /* the "yes" button inside the popup glows without sliding in again */
+            .quiz-popup .btn {
+                animation: glowPulse 2.4s infinite;
+            }
+
+            /* the "Not now" button */
+            .quiz-cancel {
+                padding: 13px 26px;
+                border: 1px solid var(--line);
+                border-radius: 30px;
+                background: transparent;
+                color: var(--text);
+                font-family: var(--font-display);
+                font-size: 0.78rem;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                cursor: pointer;
+                transition: border-color 0.3s, color 0.3s;
+            }
+
+            .quiz-cancel:hover {
+                border-color: var(--cyan);
+                color: var(--cyan);
+            }
+
+            /* reminder shown only if the Google Form link has not been added yet */
+            .quiz-note {
+                margin-top: 16px;
+                font-size: 0.9rem;
+                color: var(--pink);
+            }
+
+            /* popup grows in */
+            @keyframes popIn {
+                from {
+                    opacity: 0;
+                    transform: scale(0.9) translateY(10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: scale(1) translateY(0);
+                }
+            }
+
+
+            /* ==================== CARD AND ICON POP (hover) ==================== */
+
+            /* The scroll-reveal rules below were overriding the hover effect.
+               This rule is stronger, so the cards pop up when the mouse is over them again. */
+            body.reveal-ready .card.reveal.active:hover {
+                transform: translateY(-10px) scale(1.03);
+            }
+
+            /* keeps the slide-in on scroll, but makes the hover pop quick and smooth */
+            .card.reveal {
+                transition: opacity 0.7s ease, transform 0.35s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            }
+
+            /* the emoji icon jumps out with a springy bounce when its card is hovered */
+            .icon {
+                display: inline-block;
+                transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            }
+
+            .card:hover .icon {
+                transform: scale(1.35) rotate(-8deg);
+            }
+
+
+            /* ==================== SEARCH BAR ==================== */
+
+            .search {
+                position: relative;
+                flex: 0 1 270px;
+            }
+
+            /* magnifier icon inside the bar */
+            .search-icon {
+                position: absolute;
+                left: 13px;
+                top: 50%;
+                transform: translateY(-50%);
+                font-size: 0.85rem;
+                pointer-events: none;
+            }
+
+            .search input {
+                width: 100%;
+                padding: 9px 16px 9px 38px;
+                border: 1px solid var(--line);
+                border-radius: 20px;
+                background: rgba(255, 255, 255, 0.06);
+                color: var(--text);
+                font-family: var(--font-body);
+                font-size: 0.95rem;
+                outline: none;
+                transition: border-color 0.3s, box-shadow 0.3s;
+            }
+
+            .search input::placeholder {
+                color: var(--muted);
+            }
+
+            .search input:focus {
+                border-color: var(--cyan);
+                box-shadow: 0 0 14px rgba(34, 211, 238, 0.35);
+            }
+
+            /* the list of results that drops down under the bar */
+            .search-results {
+                position: absolute;
+                top: calc(100% + 10px);
+                left: 0;
+                width: min(420px, 92vw);
+                max-height: 60vh;
+                overflow-y: auto;
+                padding: 8px;
+                border: 1px solid var(--line);
+                border-radius: 16px;
+                background: rgba(8, 18, 44, 0.97);
+                box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(34, 211, 238, 0.15);
+            }
+
+            .search-item {
+                display: block;
+                width: 100%;
+                padding: 10px 12px;
+                border: none;
+                border-radius: 10px;
+                background: transparent;
+                color: var(--text);
+                text-align: left;
+                font-family: var(--font-body);
+                cursor: pointer;
+            }
+
+            /* a result lights up on hover or when chosen with the arrow keys */
+            .search-item:hover,
+            .search-item.selected {
+                background: rgba(34, 211, 238, 0.14);
+            }
+
+            /* small label showing which section the result is in */
+            .search-tag {
+                display: block;
+                margin-bottom: 2px;
+                font-size: 0.7rem;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                color: var(--cyan);
+            }
+
+            .search-title {
+                display: block;
+                font-family: var(--font-display);
+                font-size: 0.82rem;
+                letter-spacing: 0.03em;
+                color: #fff;
+            }
+
+            .search-snippet {
+                display: block;
+                margin-top: 3px;
+                font-size: 0.85rem;
+                color: var(--muted);
+            }
+
+            /* the typed words are highlighted inside the results */
+            .search-results mark {
+                padding: 0 2px;
+                border-radius: 3px;
+                background: rgba(34, 211, 238, 0.3);
+                color: #fff;
+            }
+
+            .search-empty {
+                padding: 10px 12px;
+                color: var(--muted);
+            }
+
+            /* the card or timeline entry that was found flashes with a cyan glow */
+            .search-hit {
+                animation: hitPulse 2.2s ease;
+            }
+
+            .timeline-item.search-hit {
+                border-radius: 12px;
+            }
+
+            @keyframes hitPulse {
+                0%, 100% {
+                    box-shadow: 0 0 0 0 rgba(34, 211, 238, 0);
+                }
+                25%, 70% {
+                    box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.7), 0 0 40px rgba(34, 211, 238, 0.6);
+                }
+            }
+
+            /* smaller screens: the search bar moves to its own full-width row under the menu */
+            @media (max-width: 1100px) {
+                html {
+                    scroll-padding-top: 120px;
+                }
+
+                .search {
+                    order: 3;
+                    flex: 1 1 100%;
+                }
+
+                .search-results {
+                    width: 100%;
+                }
+            }
+
+
+            /* ==================== SDG BADGES (Impact on Our Future) ==================== */
+
+            /* dark picture panel that holds a UN Sustainable Development Goal badge */
+            .pic.sdg-pic {
+                height: 150px;
+                background: radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.1), rgba(8, 18, 44, 0.95) 70%);
+            }
+
+            .sdg {
+                width: 112px;
+                height: 112px;
+                border-radius: 8px;
+                filter: drop-shadow(0 0 14px var(--glow));
+                transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            }
+
+            /* each badge glows in its own goal colour */
+            .sdg-3 {
+                --glow: rgba(76, 159, 56, 0.75);
+            }
+
+            .sdg-4 {
+                --glow: rgba(197, 25, 45, 0.75);
+            }
+
+            .sdg-13 {
+                --glow: rgba(63, 126, 68, 0.75);
+            }
+
+            /* the badge pops out when its card is hovered, like the other icons */
+            .card:hover .sdg {
+                transform: scale(1.12) rotate(-3deg);
+            }
+
+
+            /* ==================== 10. SCROLL-REVEAL ANIMATIONS ==================== */
+
+            /* Smoothly animate elements when they become visible during scrolling. */
+            .reveal {
+                transition: opacity 0.7s ease, transform 0.7s ease;
+            }
+
+            /* Only hide elements after JavaScript has successfully enabled the effect. */
+            body.reveal-ready .reveal:not(.active) {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            /* The active class is added by JavaScript when an element enters the screen. */
+            body.reveal-ready .reveal.active {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            /* Respect visitors who prefer reduced motion. */
+            @media (prefers-reduced-motion: reduce) {
+                .reveal,
+                body.reveal-ready .reveal:not(.active),
+                body.reveal-ready .reveal.active {
+                    opacity: 1;
+                    transform: none;
+                    transition: none;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- ==================== NAVIGATION BAR ==================== -->
+        <nav>
+            <b class="brand">⚡ Technovate</b>
+            <!-- Search bar: type a word to find cards and timeline entries -->
+            <form class="search" id="search-form" role="search" autocomplete="off">
+                <span class="search-icon" aria-hidden="true">🔍</span>
+                <input id="search-input" type="search" placeholder="Search the site..." aria-label="Search the site" aria-controls="search-results">
+                <div class="search-results" id="search-results" hidden></div>
+            </form>
+
+            <div class="menu">
+                <a href="#home">Home</a>
+                <a href="#intro">Introduction</a>
+                <a href="#evolution">Evolution</a>
+                <a href="#emerging">Emerging Tech</a>
+                <a href="#news">News</a>
+                <a href="#future">Future</a>
+            </div>
+        </nav>
+
+
+        <!-- ==================== FRONT PAGE ==================== -->
+        <header class="hero" id="home">
+            <h1 class="reveal">Innovation &amp; <span>Technology</span></h1>
+            <p class="reveal">Shaping the future, one idea at a time. Explore how technology evolved and what is coming next.</p>
+            <a class="btn reveal" href="#intro">Explore <span class="arrow">↓</span></a>
+
+            <!-- Two videos side by side as a collage. They play on their own: muted, looping, no controls. -->
+            <!-- Keep innovation.mp4 and technology.mp4 in the same folder as this file. -->
+            <div class="collage reveal">
+                <figure class="tile tile-a" data-file="innovation.mp4">
+                    <video autoplay muted loop playsinline preload="auto" aria-label="Innovation video">
+                        <source src="innovation.mp4">
+                    </video>
+                    <figcaption>Innovation</figcaption>
+                </figure>
+
+                <figure class="tile tile-b" data-file="technology.mp4">
+                    <video autoplay muted loop playsinline preload="auto" aria-label="Technology video">
+                        <source src="technology.mp4">
+
+                        <!-- backup: the original file, if it is in the same folder -->
+                        <source src="technology.mov">
+                    </video>
+                    <figcaption>Technology</figcaption>
+                </figure>
+            </div>
+        </header>
+
+
+        <main>
+
+            <!-- ==================== INTRODUCTION ==================== -->
+            <section id="intro">
+                <h2 class="reveal">Introduction</h2>
+                <p class="sub reveal">Two powerful ideas that move the world forward</p>
+                <div class="grid">
+                    <article class="card reveal">
+                        <div class="pic g1"><span class="icon">💡</span></div>
+                        <div class="body">
+                            <h3>What is Innovation?</h3>
+                            <p>Innovation is turning a fresh idea into something useful, whether it is a new product, service or way of solving a problem.</p>
+                        </div>
+                    </article>
+                    <article class="card reveal">
+                        <div class="pic g2"><span class="icon">⚙️</span></div>
+                        <div class="body">
+                            <h3>What is Technology?</h3>
+                            <p>Technology is the set of tools, machines and knowledge we use to make life easier, faster and more connected.</p>
+                        </div>
+                    </article>
+                    <article class="card reveal">
+                        <div class="pic g3"><span class="icon">🤝</span></div>
+                        <div class="body">
+                            <h3>Why They Go Together</h3>
+                            <p>Innovation supplies the ideas and technology makes them real. Together they drive progress in every field.</p>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+
+            <!-- ==================== EVOLUTION (timeline) ==================== -->
+            <div class="band">
+                <section id="evolution">
+                    <h2 class="reveal">Evolution of Technology</h2>
+                    <p class="sub reveal">From steam engines to artificial intelligence</p>
+                    <div class="timeline">
+                        <div class="timeline-item reveal">
+                            <h3>1760s – Steam &amp; Machines</h3>
+                            <p>The Industrial Revolution begins and factories replace hand production. Steam engines began powering factories, trains and ships in Britain, so goods could be made faster and in far larger numbers. Cities grew quickly as people moved from villages to find work, and travel and trade became easier, which laid the foundation for every later technological leap.</p>
+                        </div>
+                        <div class="timeline-item reveal">
+                            <h3>Late 1800s – Electricity</h3>
+                            <p>Electric power and the telephone change homes, industry and communication. Inventors like Thomas Edison, Nikola Tesla and Alexander Graham Bell brought electric light, power grids and long-distance calling into daily life. Factories could work longer hours, streets became safer at night, and electricity grew into the energy backbone of almost every later invention.</p>
+                        </div>
+                        <div class="timeline-item reveal">
+                            <h3>1940s – First Computers</h3>
+                            <p>Giant electronic computers like ENIAC begin to calculate at amazing speed. These early machines filled whole rooms and used thousands of vacuum tubes, yet they solved in seconds what people needed days to calculate. After the transistor was invented, computers became smaller, cheaper and faster, opening the door to business and personal computing.</p>
+                        </div>
+                        <div class="timeline-item reveal">
+                            <h3>1969 – Birth of the Internet</h3>
+                            <p>ARPANET connects computers, laying the base of today's internet. Funded by the United States Department of Defense, it sent its first message between two computers in California in 1969. More institutions joined over time, and shared rules for sending data, called protocols, were created, which grew into the global internet we use today.</p>
+                        </div>
+                        <div class="timeline-item reveal">
+                            <h3>1990s – World Wide Web</h3>
+                            <p>Websites and email bring information to ordinary people. In 1989 Tim Berners-Lee proposed the World Wide Web, and by the early 1990s browsers and websites were open to the public. Anyone could now read news, share ideas or send a message across the world within seconds, and search engines and online shopping soon followed.</p>
+                        </div>
+                        <div class="timeline-item reveal">
+                            <h3>2007 – Smartphones</h3>
+                            <p>Touchscreen phones put the internet in everyone's pocket. The first iPhone in 2007 combined a computer, camera, music player and web browser in a single device. App stores let developers build tools for banking, travel, learning and entertainment, and new industries like ride sharing, food delivery and mobile gaming grew rapidly around smartphones.</p>
+                        </div>
+                        <div class="timeline-item reveal">
+                            <h3>2010s – Cloud &amp; Social Media</h3>
+                            <p>Data moves online, apps are everywhere and the world gets connected. Cloud computing lets people and companies store files and run software over the internet instead of on one computer. Social media connected billions of users, while streaming, video meetings and digital payments became normal, and large amounts of data began guiding smarter decisions.</p>
+                        </div>
+                        <div class="timeline-item reveal">
+                            <h3>2020s – Generative AI</h3>
+                            <p>AI tools that write, draw and code become part of daily life. Generative AI learns from huge amounts of data to create text, images, music and software code on request. Students, doctors, artists and businesses use it to save time and explore ideas, while society discusses responsible use, privacy and fairness so that everyone can benefit.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+
+            <!-- ==================== EMERGING TECHNOLOGIES ==================== -->
+            <div class="robotic" id="emerging-stage">
+                <canvas class="field" id="emerging-field" aria-hidden="true"></canvas>
+
+                <section id="emerging">
+                    <h2 class="reveal">Emerging Technologies</h2>
+                    <p class="sub reveal">The innovations shaping tomorrow</p>
+                    <p class="field-hint">Move to pull the lights · click to burst</p>
+                    <div class="grid">
+                        <article class="card reveal">
+                            <div class="pic g1"><span class="icon">🤖</span></div>
+                            <div class="body">
+                                <h3>Artificial Intelligence</h3>
+                                <p>Machines that learn from data to understand language, images and make decisions. AI powers voice assistants, recommendations, chatbots and medical tools, helping people work faster and solve complex problems.</p>
+                                <a class="more" href="https://en.wikipedia.org/wiki/Artificial_intelligence" target="_blank" rel="noopener">Read on Wikipedia ↗</a>
+                            </div>
+                        </article>
+                        <article class="card reveal">
+                            <div class="pic g3"><span class="icon">🌐</span></div>
+                            <div class="body">
+                                <h3>Internet of Things</h3>
+                                <p>Everyday objects like watches, lights and cars connect online and share data. Smart homes, wearables and connected factories use sensors to save energy, improve safety and simplify daily routines.</p>
+                                <a class="more" href="https://en.wikipedia.org/wiki/Internet_of_things" target="_blank" rel="noopener">Read on Wikipedia ↗</a>
+                            </div>
+                        </article>
+                        <article class="card reveal">
+                            <div class="pic g4"><span class="icon">🔗</span></div>
+                            <div class="body">
+                                <h3>Blockchain</h3>
+                                <p>A shared digital ledger that records transactions securely and transparently. Records are linked in blocks and cannot be easily changed, which supports cryptocurrencies, secure payments and trusted tracking of products.</p>
+                                <a class="more" href="https://en.wikipedia.org/wiki/Blockchain" target="_blank" rel="noopener">Read on Wikipedia ↗</a>
+                            </div>
+                        </article>
+                        <article class="card reveal">
+                            <div class="pic g5"><span class="icon">⚛️</span></div>
+                            <div class="body">
+                                <h3>Quantum Computing</h3>
+                                <p>Computers using quantum physics to solve problems that are too hard for normal machines. They use qubits and could speed up drug discovery, secure communication and complex simulations.</p>
+                                <a class="more" href="https://en.wikipedia.org/wiki/Quantum_computing" target="_blank" rel="noopener">Read on Wikipedia ↗</a>
+                            </div>
+                        </article>
+                        <article class="card reveal">
+                            <div class="pic g2"><span class="icon">🥽</span></div>
+                            <div class="body">
+                                <h3>AR &amp; VR</h3>
+                                <p>Augmented and virtual reality blend the digital world with the real one for learning and play. They are used in training, gaming, virtual tours and design.</p>
+                                <a class="more" href="https://en.wikipedia.org/wiki/Augmented_reality" target="_blank" rel="noopener">Augmented reality ↗</a>
+                                <a class="more" href="https://en.wikipedia.org/wiki/Virtual_reality" target="_blank" rel="noopener">Virtual reality ↗</a>
+                            </div>
+                        </article>
+                        <article class="card reveal">
+                            <div class="pic g6"><span class="icon">🦾</span></div>
+                            <div class="body">
+                                <h3>Robotics</h3>
+                                <p>Smart robots help in factories, hospitals, farms and even space exploration. They handle dangerous or repetitive work with precision, assist surgeons, and explore places humans cannot easily reach.</p>
+                                <a class="more" href="https://en.wikipedia.org/wiki/Robotics" target="_blank" rel="noopener">Read on Wikipedia ↗</a>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+            </div>
+
+
+            <!-- ==================== LATEST NEWS ==================== -->
+            <section id="news">
+                <h2 class="reveal">Latest News</h2>
+                <p class="sub reveal">Technology stories from the past two weeks · 21 October 2026</p>
+
+                <article class="card reveal" style="margin-bottom: 28px;">
+                    <div class="body" style="padding: 24px;">
+                        <p style="font-family: var(--font-display); font-size: 0.95rem; color: var(--cyan); margin-bottom: 8px;">Quantum computing · 19 October 2026</p>
+                        <h3 style="font-size: 1.55rem; margin-bottom: 10px;">Quantum computer reaches a new accuracy record</h3>
+                        <p style="color: var(--muted); margin-bottom: 14px;">Quantinuum’s Helios machine now makes about five errors in every million operations, ten times better than its own record from the month before.</p>
+                        <a class="more" href="https://newmexicosun.com/quantinuum-achieves-record-quantum-error-correction-on-helios-computer-in-october-breakthrough" target="_blank" rel="noopener">Read the full story ↗</a>
+                    </div>
+                </article>
+
+                <div class="grid">
+                    <article class="card reveal">
+                        <div class="body">
+                            <p style="font-family: var(--font-display); color: var(--cyan); font-size: 0.9rem;">Space</p>
+                            <h3>Japan launches a Mars-moon sample mission</h3>
+                            <p>The MMX probe will study Phobos and Deimos and try to bring rock back from Phobos.</p>
+                            <a class="more" href="https://www.space.com/space-exploration/launches-spacecraft/japan-launches-historic-mmx-sample-return-mission-to-mars-moon-phobos" target="_blank" rel="noopener">Read more ↗</a>
+                        </div>
+                    </article>
+                    <article class="card reveal">
+                        <div class="body">
+                            <p style="font-family: var(--font-display); color: var(--cyan); font-size: 0.9rem;">Chips</p>
+                            <h3>Chinese tech giants order $35 billion of Nvidia chips</h3>
+                            <p>ByteDance, Alibaba and Tencent reportedly placed the orders despite US export limits.</p>
+                            <a class="more" href="https://techstartups.com/2026/10/20/tech-news-today-october-20-2026-amazon-apple-bytedance-microsoft-nvidia-openai-salesforce-more/" target="_blank" rel="noopener">Read more ↗</a>
+                        </div>
+                    </article>
+                    <article class="card reveal">
+                        <div class="body">
+                            <p style="font-family: var(--font-display); color: var(--cyan); font-size: 0.9rem;">Security</p>
+                            <h3>Microsoft fixes 1,413 security flaws</h3>
+                            <p>One of the company’s largest monthly updates covers Windows, Office, SharePoint and Azure.</p>
+                            <a class="more" href="https://techstartups.com/2026/10/14/top-tech-news-today-october-14-2026-apple-asml-google-openai-microsoft-nvidia-more/" target="_blank" rel="noopener">Read more ↗</a>
+                        </div>
+                    </article>
+                    <article class="card reveal">
+                        <div class="body">
+                            <p style="font-family: var(--font-display); color: var(--cyan); font-size: 0.9rem;">Robotics</p>
+                            <h3>OpenAI says it will build a humanoid robot</h3>
+                            <p>Sam Altman expects an impressive demonstration in 2027. Everyday public use is still years away.</p>
+                            <a class="more" href="https://aiweekly.co/alerts/altman-confirms-openai-will-build-humanoid-demo-in-2027" target="_blank" rel="noopener">Read more ↗</a>
+                        </div>
+                    </article>
+                    <article class="card reveal">
+                        <div class="body">
+                            <p style="font-family: var(--font-display); color: var(--cyan); font-size: 0.9rem;">Quantum</p>
+                            <h3>Google cuts quantum errors 40-fold</h3>
+                            <p>The Willow chip prepared special quantum states at 99.99% fidelity. Larger tests are still needed.</p>
+                            <a class="more" href="https://www.theblock.co/news/web3/2026-10-16-google-quantum-computing-breakthrough-418787" target="_blank" rel="noopener">Read more ↗</a>
+                        </div>
+                    </article>
+                    <article class="card reveal">
+                        <div class="body">
+                            <p style="font-family: var(--font-display); color: var(--cyan); font-size: 0.9rem;">Energy</p>
+                            <h3>Electric-car batteries could add huge emissions</h3>
+                            <p>A study says battery making already causes about 105 million tonnes of CO₂ a year, and demand may grow tenfold by 2050.</p>
+                            <a class="more" href="https://www.earth.com/climate/electric-vehicle-batteries-could-create-a-billion-tons-of-emissions-a-year/" target="_blank" rel="noopener">Read more ↗</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+
+            <!-- ==================== IMPACT ON OUR FUTURE ==================== -->
+            <div class="impact-sky">
+            <section id="future">
+                <h2 class="reveal">Impact on Our Future</h2>
+                <p class="sub reveal">Technology is changing every part of life</p>
+                <div class="grid">
+                    <article class="card reveal">
+                        <div class="pic sdg-pic">
+                            <!-- UN Sustainable Development Goal 3: Good Health and Well-being -->
+                            <svg class="sdg sdg-3" viewBox="0 0 120 120" role="img" aria-label="SDG 3: Good Health and Well-being">
+                            <rect width="120" height="120" rx="8" fill="#4C9F38"/>
+                            <text x="10" y="34" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#fff">3</text>
+                            <text x="10" y="52" font-family="Arial, Helvetica, sans-serif" font-size="9.5" font-weight="700" fill="#fff"><tspan x="10" dy="0">GOOD HEALTH</tspan><tspan x="10" dy="11">AND WELL-BEING</tspan></text>
+                            <path d="M60 110 C46 100 37 92 37 83 C37 77 41 72 47 72 C52 72 57 75 60 80 C63 75 68 72 73 72 C79 72 83 77 83 83 C83 92 74 100 60 110 Z" fill="#fff"/>
+                            <polyline points="40,88 52,88 56,80 62,96 66,86 80,86" fill="none" stroke="#4C9F38" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div class="body">
+                            <h3>🏥 Healthcare</h3>
+                            <p>Technology revolutionizes healthcare by improving diagnostic accuracy, enabling remote telemedicine consultations, streamlining electronic health records, and allowing real-time patient monitoring through wearable devices, enhancing overall patient outcomes and operational efficiency</p>
+                        </div>
+                    </article>
+                    <article class="card reveal">
+                        <div class="pic sdg-pic">
+                            <!-- UN Sustainable Development Goal 4: Quality Education -->
+                            <svg class="sdg sdg-4" viewBox="0 0 120 120" role="img" aria-label="SDG 4: Quality Education">
+                            <rect width="120" height="120" rx="8" fill="#C5192D"/>
+                            <text x="10" y="34" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#fff">4</text>
+                            <text x="10" y="52" font-family="Arial, Helvetica, sans-serif" font-size="9.5" font-weight="700" fill="#fff"><tspan x="10" dy="0">QUALITY</tspan><tspan x="10" dy="11">EDUCATION</tspan></text>
+                            <path d="M60 76 C52 70 40 70 30 73 V106 C40 103 52 103 60 109 C68 103 80 103 90 106 V73 C80 70 68 70 60 76 Z" fill="#fff"/>
+                            <line x1="60" y1="77" x2="60" y2="108" stroke="#C5192D" stroke-width="2.5"/>
+                            <path d="M36 80 C42 78 49 78 55 81 M36 88 C42 86 49 86 55 89 M65 81 C71 78 78 78 84 80 M65 89 C71 86 78 86 84 88" fill="none" stroke="#C5192D" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div class="body">
+                            <h3>🎓 Education</h3>
+                            <p>Technology transforms education by expanding access to global information, enabling personalized self-paced learning, and fostering interactive collaboration through digital tools. It bridges geographical gaps, automates grading for teachers, and prepares students with essential digital skills for a tech-driven workforce.</p>
+                        </div>
+                    </article>
+                    <article class="card reveal">
+                        <div class="pic sdg-pic">
+                            <!-- UN Sustainable Development Goal 13: Climate Action -->
+                            <svg class="sdg sdg-13" viewBox="0 0 120 120" role="img" aria-label="SDG 13: Climate Action">
+                            <rect width="120" height="120" rx="8" fill="#3F7E44"/>
+                            <text x="10" y="34" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#fff">13</text>
+                            <text x="10" y="52" font-family="Arial, Helvetica, sans-serif" font-size="9.5" font-weight="700" fill="#fff"><tspan x="10" dy="0">CLIMATE</tspan><tspan x="10" dy="11">ACTION</tspan></text>
+                            <circle cx="60" cy="92" r="19" fill="none" stroke="#fff" stroke-width="3.5"/>
+                            <ellipse cx="60" cy="92" rx="8" ry="19" fill="none" stroke="#fff" stroke-width="3"/>
+                            <line x1="41" y1="92" x2="79" y2="92" stroke="#fff" stroke-width="3"/>
+                            </svg>
+                        </div>
+                        <div class="body">
+                            <h3>🌱 Environment</h3>
+                            <p>Technology impacts the environment double-edgedly: it drives renewable energy advancements and smarter resource tracking, yet accelerates e-waste, high carbon emissions from data centres, and intensive resource extraction for hardware manufacturing.</p>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            </div>
+
+        </main>
+
+
+        <!-- ==================== FOOTER ==================== -->
+        <footer>
+
+            <!-- Animated GIF. Keep innovation-end.gif in the same folder as this file -->
+            <img class="end-gif reveal" src="innovation-end.gif" alt="Rotating glowing network globe that says Innovate, Create, Inspire">
+
+            <p class="reveal">Innovation + Technology = A Better Tomorrow. Any questions?</p>
+
+            <!-- Quiz button: opens the popup below -->
+            <button class="btn quiz-btn reveal" id="quiz-open" type="button">Quiz</button>
+
+            <!-- Contact details -->
+            <div class="contact reveal">
+                <span>✉️ <a href="mailto:abc@gmail.com">abc@gmail.com</a></span>
+                <span>📞 <a href="tel:0123456789">0123456789</a></span>
+            </div>
+        </footer>
+
+
+        <!-- ==================== QUIZ POPUP ==================== -->
+        <!-- Opens when the Quiz button is clicked. Esc, "Not now" or a click outside closes it. -->
+        <dialog class="quiz-popup" id="quiz-popup" aria-labelledby="quiz-title">
+            <h3 id="quiz-title">Start quiz?</h3>
+            <p>Test what you learned about innovation and technology. The quiz is a Word document: it downloads, then open it in Word to ask the questions.</p>
+
+            <div class="quiz-actions">
+                <!-- The link of this button is set in the script below (QUIZ_LINK). -->
+                <a class="btn" id="quiz-start" href="#" target="_blank" rel="noopener">Yes, start quiz</a>
+                <button class="quiz-cancel" id="quiz-cancel" type="button">Not now</button>
+            </div>
+
+            <!-- Hidden until needed: reminds you to paste your Google Form link -->
+            <p class="quiz-note" id="quiz-note" hidden>Quiz file not set. Add the file name or link to QUIZ_LINK in the code.</p>
+        </dialog>
+
+
+    <!-- ==================== SCROLL-REVEAL JAVASCRIPT ==================== -->
+    <script>
+        // Find every element marked with the "reveal" class.
+        const revealElements = document.querySelectorAll(".reveal");
+
+        // Watch elements and detect when they enter the visible screen area.
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                // Run this block when at least part of the element is visible.
+                if (entry.isIntersecting) {
+                    // Add "active" so CSS fades the element in and moves it upward.
+                    entry.target.classList.add("active");
+
+                    // Stop watching this element because it only needs to animate once.
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.15 // Trigger when about 15% of an element is visible.
+        });
+
+        // Enable the hidden-before-reveal styles only when JavaScript is running.
+        document.body.classList.add("reveal-ready");
+
+        // Start observing each element marked for animation.
+        revealElements.forEach(element => {
+            revealObserver.observe(element);
+        });
+
+
+        // ---------- Emerging: interactive light field ----------
+        (function startField() {
+            const stage = document.getElementById("emerging-stage");
+            const canvas = document.getElementById("emerging-field");
+            if (!stage || !canvas) return;
+            const ctx = canvas.getContext("2d");
+            const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            const palette = ["#67e8f9", "#22d3ee", "#a78bfa", "#f472b6", "#e0e7ff"];
+            let w = 0, h = 0, dpr = 1;
+            const pointer = { x: 0, y: 0, on: false };
+            let dots = [];
+            const rings = [];
+
+            const seed = () => {
+                const count = Math.round(Math.min(110, Math.max(48, (w * h) / 14000)));
+                dots = Array.from({ length: count }, () => spawn(Math.random() * w, Math.random() * h, false));
+            };
+
+            const spawn = (x, y, burst) => ({
+                x, y,
+                vx: (Math.random() - 0.5) * (burst ? 4.2 : 0.4),
+                vy: (Math.random() - 0.5) * (burst ? 4.2 : 0.4),
+                r: burst ? Math.random() * 2.4 + 1 : Math.random() * 1.7 + 0.5,
+                c: palette[Math.floor(Math.random() * palette.length)],
+                life: burst ? 1 : 0,
+                burst
+            });
+
+            const resize = () => {
+                dpr = Math.min(window.devicePixelRatio || 1, 2);
+                w = stage.clientWidth;
+                h = stage.clientHeight;
+                canvas.width = Math.max(1, Math.floor(w * dpr));
+                canvas.height = Math.max(1, Math.floor(h * dpr));
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                seed();
+            };
+
+            const setPointer = (clientX, clientY) => {
+                const box = stage.getBoundingClientRect();
+                pointer.x = clientX - box.left;
+                pointer.y = clientY - box.top;
+                pointer.on = true;
+            };
+
+            stage.addEventListener("pointermove", e => setPointer(e.clientX, e.clientY));
+            stage.addEventListener("pointerleave", () => { pointer.on = false; });
+            stage.addEventListener("pointerdown", e => {
+                setPointer(e.clientX, e.clientY);
+                rings.push({ x: pointer.x, y: pointer.y, r: 8, a: 0.8 });
+                for (let i = 0; i < 18; i++) dots.push(spawn(pointer.x, pointer.y, true));
+                if (dots.length > 180) dots.splice(0, dots.length - 180);
+            });
+
+            const draw = (time) => {
+                ctx.clearRect(0, 0, w, h);
+                const sky = ctx.createLinearGradient(0, 0, w, h);
+                sky.addColorStop(0, "#12082a");
+                sky.addColorStop(0.5, "#0b1b3a");
+                sky.addColorStop(1, "#061018");
+                ctx.fillStyle = sky;
+                ctx.fillRect(0, 0, w, h);
+
+                const t = time * 0.001;
+                for (let i = 0; i < 3; i++) {
+                    const ox = w * (0.25 + i * 0.25) + Math.sin(t * 0.3 + i) * 40;
+                    const oy = h * (0.2 + (i % 2) * 0.35) + Math.cos(t * 0.25 + i) * 30;
+                    const g = ctx.createRadialGradient(ox, oy, 0, ox, oy, Math.min(w, h) * 0.45);
+                    g.addColorStop(0, i === 1 ? "rgba(167,139,250,0.22)" : "rgba(34,211,238,0.16)");
+                    g.addColorStop(1, "rgba(0,0,0,0)");
+                    ctx.fillStyle = g;
+                    ctx.fillRect(0, 0, w, h);
+                }
+
+                const link = Math.min(130, w * 0.12);
+                for (let i = 0; i < dots.length; i++) {
+                    const d = dots[i];
+                    if (!reduce) {
+                        if (pointer.on && !d.burst) {
+                            const dx = pointer.x - d.x;
+                            const dy = pointer.y - d.y;
+                            const dist = Math.hypot(dx, dy) || 1;
+                            const pull = Math.min(180, 9000 / (dist * dist));
+                            d.vx += dx / dist * pull * 0.08;
+                            d.vy += dy / dist * pull * 0.08;
+                        }
+                        d.vx *= 0.985;
+                        d.vy *= 0.985;
+                        d.x += d.vx;
+                        d.y += d.vy;
+                        if (!d.burst) {
+                            if (d.x < 0 || d.x > w) d.vx *= -1;
+                            if (d.y < 0 || d.y > h) d.vy *= -1;
+                        } else {
+                            d.life -= 0.012;
+                        }
+                    }
+                }
+                dots = dots.filter(d => !d.burst || d.life > 0);
+
+                ctx.lineWidth = 1;
+                for (let i = 0; i < dots.length; i++) {
+                    for (let j = i + 1; j < dots.length; j++) {
+                        const a = dots[i], b = dots[j];
+                        const dist = Math.hypot(a.x - b.x, a.y - b.y);
+                        if (dist < link) {
+                            ctx.strokeStyle = "rgba(125, 211, 252, " + ((1 - dist / link) * 0.35) + ")";
+                            ctx.beginPath();
+                            ctx.moveTo(a.x, a.y);
+                            ctx.lineTo(b.x, b.y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+
+                dots.forEach(d => {
+                    ctx.globalAlpha = d.burst ? d.life : 0.9;
+                    ctx.fillStyle = d.c;
+                    ctx.beginPath();
+                    ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+                ctx.globalAlpha = 1;
+
+                if (pointer.on) {
+                    const glow = ctx.createRadialGradient(pointer.x, pointer.y, 0, pointer.x, pointer.y, 140);
+                    glow.addColorStop(0, "rgba(244,114,182,0.22)");
+                    glow.addColorStop(1, "rgba(244,114,182,0)");
+                    ctx.fillStyle = glow;
+                    ctx.beginPath();
+                    ctx.arc(pointer.x, pointer.y, 140, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                for (let i = rings.length - 1; i >= 0; i--) {
+                    const ring = rings[i];
+                    ring.r += 6;
+                    ring.a -= 0.02;
+                    if (ring.a <= 0) {
+                        rings.splice(i, 1);
+                        continue;
+                    }
+                    ctx.strokeStyle = "rgba(226, 232, 255, " + ring.a + ")";
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.arc(ring.x, ring.y, ring.r, 0, Math.PI * 2);
+                    ctx.stroke();
+                }
+
+                if (!reduce) requestAnimationFrame(draw);
+            };
+
+            resize();
+            if (window.ResizeObserver) new ResizeObserver(resize).observe(stage);
+            else window.addEventListener("resize", resize);
+            requestAnimationFrame(draw);
+        })();
+
+        // ---------- Front page videos ----------
+        // Both videos are muted (browsers only autoplay muted videos) and loop forever.
+        document.querySelectorAll(".collage video").forEach(video => {
+            const tile = video.closest(".tile");
+
+            // Ask the browser to play the video. If it refuses, we try again below.
+            const play = () => {
+                video.muted = true;
+                video.play().catch(() => {});
+            };
+            play();
+            video.addEventListener("loadeddata", play);
+
+            // If a browser blocked autoplay, the first click, touch or key press starts the videos.
+            ["click", "touchstart", "keydown"].forEach(type => {
+                document.addEventListener(type, play, { once: true });
+            });
+
+            // If none of the video files can be loaded, show a short help message on the tile.
+            const checkMissing = () => {
+                if (video.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) {
+                    tile.classList.add("video-missing");
+                }
+            };
+            video.querySelector("source:last-of-type").addEventListener("error", checkMissing);
+            setTimeout(checkMissing, 2500);
+        });
+
+        // ---------- Quiz button and popup ----------
+        // The quiz is a Word document. Keep technovate-quiz.docx in the same folder as this file.
+        // (To use a Google Form instead, paste its link between the quotation marks.)
+        const QUIZ_LINK = "technovate-quiz.docx";
+
+        const quizPopup = document.getElementById("quiz-popup");
+        const quizStart = document.getElementById("quiz-start");
+        const quizNote = document.getElementById("quiz-note");
+        const quizReady = QUIZ_LINK !== "" && !QUIZ_LINK.includes("PASTE_");
+
+        // Give the "Yes, start quiz" button its link (only if a real link was pasted).
+        if (quizReady) {
+            quizStart.href = QUIZ_LINK;
+        }
+
+        // A Word file cannot open inside the web page, so the browser downloads it and you open it with Word.
+        if (quizReady && QUIZ_LINK.endsWith(".docx")) {
+            quizStart.removeAttribute("target");
+            quizStart.setAttribute("download", "Technovate-Quiz.docx");
+        }
+
+        // The Quiz button opens the popup.
+        document.getElementById("quiz-open").addEventListener("click", () => {
+            quizNote.hidden = true;
+            quizPopup.showModal();
+        });
+
+        // "Not now" closes the popup.
+        document.getElementById("quiz-cancel").addEventListener("click", () => quizPopup.close());
+
+        // "Yes, start quiz": open the quiz, or show a reminder if no link was added yet.
+        quizStart.addEventListener("click", event => {
+            if (!quizReady) {
+                event.preventDefault();
+                quizNote.hidden = false;
+                return;
+            }
+            quizPopup.close();
+        });
+
+        // A click on the dark area outside the popup box also closes it.
+        quizPopup.addEventListener("click", event => {
+            const box = quizPopup.getBoundingClientRect();
+            const inside = event.clientX >= box.left && event.clientX <= box.right &&
+                           event.clientY >= box.top && event.clientY <= box.bottom;
+            if (!inside) {
+                quizPopup.close();
+            }
+        });
+
+        // ---------- Search bar ----------
+        const searchForm = document.getElementById("search-form");
+        const searchInput = document.getElementById("search-input");
+        const searchResults = document.getElementById("search-results");
+
+        // The name shown on each result, one per section.
+        const sectionNames = { intro: "Introduction", evolution: "Evolution", emerging: "Emerging Tech", news: "News", future: "Future" };
+
+        // Make a short list of everything that can be searched:
+        // section titles, cards and timeline entries.
+        const clean = text => text.replace(/\s+/g, " ").trim();
+        const searchIndex = [];
+        document.querySelectorAll("section").forEach(section => {
+            const where = sectionNames[section.id] || "";
+            const heading = section.querySelector("h2");
+            const sub = section.querySelector(".sub");
+            if (heading) {
+                searchIndex.push({ title: clean(heading.textContent), text: sub ? clean(sub.textContent) : "", where, element: heading, flash: false });
+            }
+            section.querySelectorAll(".card, .timeline-item").forEach(item => {
+                const title = item.querySelector("h3");
+                const text = item.querySelector("p");
+                searchIndex.push({ title: clean(title.textContent), text: text ? clean(text.textContent) : "", where, element: item, flash: true });
+            });
+        });
+
+        // Split what was typed into separate lowercase words.
+        const splitWords = query => query.toLowerCase().split(/\s+/).filter(Boolean);
+
+        // Find the entries that contain every typed word (best matches first, at most 8).
+        const findMatches = words => {
+            return searchIndex
+                .map(entry => {
+                    const title = entry.title.toLowerCase();
+                    const text = entry.text.toLowerCase();
+                    if (!words.every(word => title.includes(word) || text.includes(word))) {
+                        return null;
+                    }
+                    // A word found in the title counts more than a word found in the text.
+                    const score = words.reduce((sum, word) => sum + (title.includes(word) ? 3 : 0) + (text.includes(word) ? 1 : 0), 0);
+                    return { entry, score };
+                })
+                .filter(Boolean)
+                .sort((a, b) => b.score - a.score)
+                .slice(0, 8)
+                .map(match => match.entry);
+        };
+
+        // Write text into an element and put <mark> around the typed words.
+        // (Text nodes are used, so whatever is typed can never run as HTML.)
+        const highlight = (parent, text, words) => {
+            const safe = words.map(word => word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+            const pattern = new RegExp("(" + safe.join("|") + ")", "gi");
+            text.split(pattern).forEach(part => {
+                if (words.includes(part.toLowerCase())) {
+                    const mark = document.createElement("mark");
+                    mark.textContent = part;
+                    parent.appendChild(mark);
+                } else {
+                    parent.appendChild(document.createTextNode(part));
+                }
+            });
+        };
+
+        // Show a short piece of the text around the first typed word.
+        const makeSnippet = (text, words) => {
+            const positions = words.map(word => text.toLowerCase().indexOf(word)).filter(pos => pos >= 0);
+            const start = positions.length ? Math.max(0, Math.min(...positions) - 30) : 0;
+            return (start > 0 ? "…" : "") + text.slice(start, start + 100) + (start + 100 < text.length ? "…" : "");
+        };
+
+        let shownResults = [];     // the entries currently listed
+        let selectedResult = -1;   // which one is chosen with the arrow keys
+
+        // Scroll to the chosen entry and make it flash.
+        const openResult = entry => {
+            searchResults.hidden = true;
+            searchInput.blur();
+            entry.element.classList.add("active");   // makes sure the scroll-in effect shows it
+            entry.element.scrollIntoView({ behavior: "smooth", block: entry.flash ? "center" : "start" });
+            if (entry.flash) {
+                entry.element.classList.remove("search-hit");
+                void entry.element.offsetWidth;       // restarts the animation if it ran before
+                entry.element.classList.add("search-hit");
+                setTimeout(() => entry.element.classList.remove("search-hit"), 2300);
+            }
+        };
+
+        // Draw the list of results under the bar.
+        const showResults = () => {
+            const words = splitWords(searchInput.value);
+            searchResults.textContent = "";
+            selectedResult = -1;
+            if (words.length === 0) {
+                searchResults.hidden = true;
+                return;
+            }
+            shownResults = findMatches(words);
+            if (shownResults.length === 0) {
+                const empty = document.createElement("p");
+                empty.className = "search-empty";
+                empty.textContent = "No results found.";
+                searchResults.appendChild(empty);
+            }
+            shownResults.forEach(entry => {
+                const item = document.createElement("button");
+                item.type = "button";
+                item.className = "search-item";
+
+                const tag = document.createElement("span");
+                tag.className = "search-tag";
+                tag.textContent = entry.where;
+
+                const title = document.createElement("span");
+                title.className = "search-title";
+                highlight(title, entry.title, words);
+
+                const snippet = document.createElement("span");
+                snippet.className = "search-snippet";
+                highlight(snippet, makeSnippet(entry.text, words), words);
+
+                item.append(tag, title, snippet);
+                item.addEventListener("click", () => openResult(entry));
+                searchResults.appendChild(item);
+            });
+            searchResults.hidden = false;
+        };
+
+        searchInput.addEventListener("input", showResults);
+        searchInput.addEventListener("focus", showResults);
+
+        // Keyboard: arrow keys choose a result, Enter opens it, Escape closes the list.
+        searchInput.addEventListener("keydown", event => {
+            const items = searchResults.querySelectorAll(".search-item");
+            if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+                event.preventDefault();
+                if (items.length === 0) {
+                    return;
+                }
+                const step = event.key === "ArrowDown" ? 1 : -1;
+                selectedResult = (selectedResult + step + items.length) % items.length;
+                items.forEach((item, index) => item.classList.toggle("selected", index === selectedResult));
+                items[selectedResult].scrollIntoView({ block: "nearest" });
+            } else if (event.key === "Enter") {
+                event.preventDefault();
+                const chosen = shownResults[selectedResult >= 0 ? selectedResult : 0];
+                if (chosen && !searchResults.hidden) {
+                    openResult(chosen);
+                }
+            } else if (event.key === "Escape") {
+                searchResults.hidden = true;
+            }
+        });
+
+        // Pressing Enter must not reload the page.
+        searchForm.addEventListener("submit", event => event.preventDefault());
+
+        // A click anywhere else closes the list.
+        document.addEventListener("click", event => {
+            if (!searchForm.contains(event.target)) {
+                searchResults.hidden = true;
+            }
+        });
+    </script>
+    </body>
+</html>
